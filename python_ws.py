@@ -23,3 +23,8 @@ class Todos:
 t = Todos(d)
 print(t.messages)
 print(t.messages[0]['title'])
+
+resp = requests.post\
+    ("http://127.0.0.1:5000/messages",
+     '{"id" : 5, "title" : "post5"}')
+print(f'Status code = {resp.status_code}')
