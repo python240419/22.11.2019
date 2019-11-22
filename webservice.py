@@ -30,14 +30,31 @@ def webservicewithid(id):
                 return item
         return f'not found item with id -- {id}'
     if request.method == 'PUT':
-        # todo - the same but update
-        return 'You put -- update'
+        print(request.data)
+        obj_body = json.loads(request.data)
+        print(obj_body)
+        msg_list = messages['messages']
+        for item in msg_list:
+            if item['id'] == id:
+                item['id'] = obj_body['id']
+                item['title'] = obj_body['title']
+                return "updated!"
+        return f'not found item with id -- {id}'
     if request.method == 'DELETE':
-        # todo - delete
-        return 'You deleted'
-    
+        msg_list = messages['messages']
+        index = 0
+        for index, item in enumerate(msg_list):
+            if item['id'] == id:
+                del msg_list[index]
+                return 'deleted!'
+        return f'not found item with id -- {id}'
+
 messages = { 'messages' :
     [{'id' : 1, 'title' : 'Hello'},
     {'id' : 2, 'title' : 'How are you?'}] }
-        
+
+@app.route('/get1')
+def get1():
+    return render_template('pageget.html')
+
 app.run(debug=True)
