@@ -2,6 +2,8 @@ from flask import Flask
 from flask import render_template, request, redirect,url_for
 import json
 
+app = Flask(__name__)
+
 @app.route('/messages', methods=['GET', 'POST','PUT', 'DELETE'])
 def webservice():
     messages = { 'messages' :
