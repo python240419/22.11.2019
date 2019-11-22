@@ -4,6 +4,12 @@ import json
 
 app = Flask(__name__)
 
+
+@app.route('/')
+def home_page():
+    return f'<html><h1><b>Welcome to Flask!</b></h1></html>'
+
+
 @app.route('/messages', methods=['GET', 'POST','PUT', 'DELETE'])
 def webservice():
     messages = { 'messages' :
