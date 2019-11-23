@@ -8,7 +8,7 @@ app = Flask(__name__)
 def home_page():
     return f'<html><h1><b>Welcome to Flask!</b></h1></html>'
 
-@app.route('/messages', methods=['GET', 'PUT'])
+@app.route('/messages', methods=['GET', 'POST'])
 def webservice():
     global messages
     if request.method == 'GET':
